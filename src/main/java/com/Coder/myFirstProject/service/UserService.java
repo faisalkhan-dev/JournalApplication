@@ -2,6 +2,7 @@ package com.Coder.myFirstProject.service;
 
 import com.Coder.myFirstProject.entity.User;
 import com.Coder.myFirstProject.repository.UserRepository;
+import jakarta.annotation.PostConstruct;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,9 +19,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @PostConstruct
+    public void init() {
+        System.out.println(">>> PublicController initialized");
+    }
+
+
     private static final PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
 
     public  void saveNewUser(User user){
+        System.out.println("save new user");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Arrays.asList("USER"));
         userRepository.save(user);

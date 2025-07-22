@@ -2,10 +2,6 @@ package com.Coder.myFirstProject.config;
 
 import com.Coder.myFirstProject.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -39,8 +35,6 @@ public class SpringSecurity {
                 .httpBasic(Customizer.withDefaults())
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
-
-
     }
 
 
@@ -55,4 +49,5 @@ public class SpringSecurity {
         return new BCryptPasswordEncoder();
     }
 }
+
 
