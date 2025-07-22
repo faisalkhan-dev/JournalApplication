@@ -32,7 +32,8 @@ build/
 ### VS Code ###
 .vscode/
 
-# Ignore Spring Boot config files
-#src/main/resources/application.properties
-#src/main/resources/application.yml
+# Ignore only config files
+src/main/resources/application.properties
+src/main/resources/application.yml
+
 
