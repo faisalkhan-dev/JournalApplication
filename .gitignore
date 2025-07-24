@@ -34,5 +34,6 @@ build/
 
 # Ignore only config files
 application.properties
+htmlReport
 
 
