@@ -3,7 +3,10 @@ package com.Coder.myFirstProject.service;
 import com.Coder.myFirstProject.entity.User;
 import com.Coder.myFirstProject.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -14,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
+@Slf4j
 public class UserService {
 
     @Autowired
@@ -34,6 +38,11 @@ public class UserService {
             userRepository.save(user);
             return true;
         }catch (Exception e){
+            log.trace("Exception in creating trace {}", user.getUserName());
+            log.debug("Exception in creating debug {}", user.getUserName());
+            log.info("Exception in creating info {}", user.getUserName());
+            log.warn("Exception in creating warn {}", user.getUserName());
+            log.error("Exception in creating error {}", user.getUserName());   // {}->user.getUserName()
             return false;
         }
     }
@@ -58,3 +67,6 @@ public class UserService {
         return userRepository.findByUserName(username);
     }
 }
+
+
+
