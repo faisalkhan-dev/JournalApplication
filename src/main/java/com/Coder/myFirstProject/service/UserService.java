@@ -38,10 +38,6 @@ public class UserService {
             userRepository.save(user);
             return true;
         }catch (Exception e){
-            log.trace("Exception in creating trace {}", user.getUserName());
-            log.debug("Exception in creating debug {}", user.getUserName());
-            log.info("Exception in creating info {}", user.getUserName());
-            log.warn("Exception in creating warn {}", user.getUserName());
             log.error("Exception in creating error {}", user.getUserName());   // {}->user.getUserName()
             return false;
         }
