@@ -36,6 +36,7 @@ build/
 application.properties
 htmlReport
 /*.log
+/*.properties
 
 
 

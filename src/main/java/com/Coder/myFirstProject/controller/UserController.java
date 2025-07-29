@@ -1,8 +1,10 @@
 package com.Coder.myFirstProject.controller;
 
+import com.Coder.myFirstProject.api.response.WeatherResponse;
 import com.Coder.myFirstProject.entity.User;
 import com.Coder.myFirstProject.repository.UserRepository;
 import com.Coder.myFirstProject.service.UserService;
+import com.Coder.myFirstProject.service.WeatherService;
 import org.springframework.security.core.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,9 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private WeatherService weatherService;
+
 
     @PutMapping
     public ResponseEntity<?> updateUser(@RequestBody User user) {
@@ -41,5 +46,22 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         userRepository.deleteByUserName(authentication.getName());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+//    @GetMapping
+//    public ResponseEntity<?> greeting() {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        return new ResponseEntity<>("Hi "+authentication.getName()+"Today feels like "+weatherService.getWeather("Noida").,HttpStatus.OK);
+//    }
+
+    @GetMapping
+    public ResponseEntity<?> greeting() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        WeatherResponse weatherResponse = weatherService.getWeather("Mumbai");
+        String greeting = "";
+        if (weatherResponse != null) {
+            greeting = ", Weather feels like " + weatherResponse.getCurrent().getFeelslike();
+        }
+        return new ResponseEntity<>("Hi " + authentication.getName() + greeting, HttpStatus.OK);
     }
 }
