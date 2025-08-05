@@ -33,7 +33,7 @@ build/
 .vscode/
 
 # Ignore only config files
-application.properties
+
 htmlReport
 /*.log
 application-dev.properties
